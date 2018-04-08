@@ -1,0 +1,44 @@
+﻿@model IEnumerable<AlischEvents.Web.Models.Site.WebSite>
+
+@{
+    ViewBag.Title = "Static";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+@section PageTitle{
+    Übersicht Statischer Seiten
+}
+    <p>Statische Seiten können nicht vom Benutzer angelegt werden, sie sind vordefiniert und können auch nicht gelöscht werden.<br />Sie können diese Seiten nur bearbeiten!</p>
+    <table width="900" cellpadding="10">
+        <tr>
+            <th>
+                Titel
+            </th>
+            <th>
+                Beschreibung
+            </th>
+            <th>
+                Im Menü anzeigen?
+            </th>
+            <th></th>
+        </tr>
+
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.SiteTitle)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SiteLabel)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ShowOnMenu)
+            </td>
+            <td>
+                @Html.ActionLink("Bearbeiten", "Edit", new { id=item.SiteID }) |
+                @Html.ActionLink("Anzeigen", "Show", new { id=item.SiteID })
+            </td>
+        </tr>
+    }
+
+    </table>

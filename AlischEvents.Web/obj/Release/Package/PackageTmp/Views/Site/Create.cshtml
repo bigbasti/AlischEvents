@@ -1,0 +1,67 @@
+﻿@model AlischEvents.Web.Models.Site.WebSite
+
+@{
+    ViewBag.Title = "Seite anlegen";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+@section HeadContent{
+    <script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+}
+@section PageTitle{
+    Neue Seite anlegen
+}
+
+    <h3>Bitte füllen Sie alle Felder aus um eine neue Seite anzulegen</h3>
+
+    @using (Html.BeginForm()) {
+        @Html.ValidationSummary(true)
+        <fieldset>
+            <legend>Seitendetails</legend>
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.SiteTitle)<br />
+                Dies ist die Überschrift der Seite, dieser Text wird später in dem Farblich hinterlegten Bereicht der Seite in größerer Schrift stehen. So wie jetzt auf dieser Seite der Text "Neue Seite anlegen"
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.SiteTitle)
+                @Html.ValidationMessageFor(model => model.SiteTitle)
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.SiteLabel)<br />
+                Falls diese Seite im Menü angezeigt werden soll, wird dieser Text im Menü auftauchen.
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.SiteLabel)
+                @Html.ValidationMessageFor(model => model.SiteLabel)
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.ShowOnMenu)<br />
+                Diese Option entscheidet, ob diese Seite in dem Hauptmenü auftauch wird. Wenn Sie diese Option aktivieren können Sie nach der Erstellung der Seite unter dem Menüpunkt "Menü" einstellen an welcher Stelle im Menü diese Seite stehen soll.
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.ShowOnMenu)
+                @Html.ValidationMessageFor(model => model.ShowOnMenu)
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.IsSpecialSite)<br />
+                Seiten die als Besondere Seiten markiert sind, erhalten kein Grundlayout, es muss dann selbst erstellt werden. Diese Option sollte nur aktiviert wertden wenn diese sich optisch deutlich von allen anderen Seiten unterscheinden soll. (Beispiel: Startseite)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.IsSpecialSite)
+                @Html.ValidationMessageFor(model => model.IsSpecialSite)
+            </div>
+
+            <p>
+                <input type="submit" value="Seite anlegen" />
+            </p>
+        </fieldset>
+    }
+
+    <div>
+        @Html.ActionLink("Zurück zur Übersicht", "Index")
+    </div>

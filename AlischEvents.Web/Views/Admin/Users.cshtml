@@ -1,0 +1,54 @@
+﻿@model IQueryable<AlischEvents.Web.Models.Admin.SiteUser>
+
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    ViewBag.Title = "Benutzer der Seite";
+}
+
+@section PageTitle{
+    Übersicht aller Benutzer
+}
+    <h3>Übersicht aller Benutzer mit Zugang zur Administrationsoberfläche</h3>
+    <p>Bitte bedenken Sie, dass jeder dieser Benutzer vollen Zugriff auf die Administrativen Inhalte der Seite hat.</p>
+    <p>
+        @Html.ActionLink("Neuen Benutzer anlegen", "Create")
+    </p>
+    <table cellpadding="10">
+        <tr>
+            <th>
+                Vorname
+            </th>
+            <th>
+                Nachname
+            </th>
+            <th>
+                Loginname
+            </th>
+            <th>
+                E-Mail Adresse
+            </th>
+            <th></th>
+        </tr>
+
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Firstname)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Lastname)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Username)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.ActionLink("Bearbeiten", "Edit", new { id=item.UserID }) |
+                @Html.ActionLink("Löschen", "Delete", new { id=item.UserID })
+            </td>
+        </tr>
+    }
+
+    </table>

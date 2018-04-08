@@ -1,0 +1,20 @@
+﻿@{
+    string title = ViewBag.Title == null ? "Unbekannter Fehler aufgetreten" : ViewBag.Title;
+    string content = ViewBag.Content == null ? "<h3>Es ist ein Unbekannter Fehler aufgetreten!</h3><p>Das tut uns leid, bitte versuchen Sie es erneut.<br />Wenn dieser Fehler weiterhin auftritt nehmen Sie bitte mit uns Kontakt auf.</p>" : ViewBag.Content;
+    
+    ViewBag.Title = title;
+    ViewBag.Special = false;
+}
+
+
+@section HeadContent{
+
+}
+
+@section PageHeading{
+    @title
+}
+
+@Html.Raw(content)
+
+<p>Klicken Sie bitte @Html.ActionLink("Hier", "Index", "Home") um zurück zur Startseite zu gelangen</p>

@@ -1,0 +1,13 @@
+﻿@model AlischEvents.Web.Models.Site.WebSite
+
+@{
+    ViewBag.Title = "Alisch Eventagentur";
+}
+
+
+@section HeadContent{
+    <script src="@Url.Content("~/Scripts/slideswitch.js")" type="text/javascript"></script>
+    <link href="@Url.Content("~/Content/css/slideswitch.css")" rel="stylesheet" type="text/css" />
+}
+
+@Html.Raw(Model.SiteContent)

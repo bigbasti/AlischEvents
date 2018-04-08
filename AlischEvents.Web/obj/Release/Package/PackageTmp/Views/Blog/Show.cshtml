@@ -1,0 +1,37 @@
+﻿@model AlischEvents.Web.Models.Blog.Blog
+
+@{
+    ViewBag.Title = Model.Title;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="page-title">
+    <span>@Model.Title</span>
+</div>
+<div class="page-body-content">
+    @if (User.Identity.IsAuthenticated) {
+        <p>
+            @Html.ActionLink("Neuen Artikel in diesem Blog anlegen", "Create", "Post", new { id = Model.BlogID }, null)
+        </p>
+    }
+
+    @foreach (var post in Model.Posts.Where(p => p.Published == true).OrderByDescending(o => o.Date)) {
+        <div class="article-heading">
+            @Html.ActionLink(post.Title, "Show", "Post", new { id = post.PostID }, null)
+        </div>
+        <div class="article-content">
+            @Html.Raw(post.PreviewText)
+            @Html.ActionLink("Weiterlesen...", "Show", "Post", new {id = post.PostID}, null)
+            <div class="clear"></div>
+        </div>
+        <div class="article-seperator"></div>
+    }
+
+
+    @if (User.Identity.IsAuthenticated) {
+        <p>
+            @Html.ActionLink("Bearbeiten", "Edit", new { id = Model.BlogID }) |
+            @Html.ActionLink("Zurück zur Übersicht", "Index")
+        </p>
+    }
+    </div>

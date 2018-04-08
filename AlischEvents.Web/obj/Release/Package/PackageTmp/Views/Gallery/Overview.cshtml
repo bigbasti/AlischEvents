@@ -1,0 +1,23 @@
+﻿@model LinkedList<AlischEvents.Web.Models.Galerie.Gallery>
+
+@{
+    ViewBag.Title = "Übersicht";
+    ViewBag.Special = false;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section HeadContent{
+
+}
+
+
+@section PageHeading{
+    Übersicht verfügbarer Galerien
+}
+
+<h3>Für den eingegebenen Zugangscode wurden folgende Galerien freigeschaltet:</h3>
+
+@foreach (var gallery in Model) {
+    <h1>@gallery.Title</h1>
+    <br />
+}

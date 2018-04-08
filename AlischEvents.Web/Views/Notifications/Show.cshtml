@@ -1,0 +1,15 @@
+﻿@model AlischEvents.Web.Models.Kontakt.ContactRequest
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+@section PageTitle{
+    @Model.Subject
+}
+
+    @Html.Raw(Model.Content)
+<p>
+    @Html.ActionLink("Zurück zur Übersicht", "Index")
+</p>

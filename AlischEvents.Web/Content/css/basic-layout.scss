@@ -1,0 +1,69 @@
+﻿$page-width:					950px;
+
+$page-header-height:			100px;
+$page-header-logo-width:		600px;
+
+$sidebar-width:					300px;
+
+div{
+	//border: 1px solid black;
+}
+
+body{
+	font-family: Tahoma, "Helvetica Neue", Arial, Helvetica, sans-serif;
+	//background-image: url('../grafik/design/washi.png');
+}
+
+#page-content{
+	width: $page-width;
+	margin:{
+		left: auto;
+		right: auto;
+	}
+
+
+
+	#page-header{
+		height: $page-header-height;
+
+		#page-header-logo{
+			float: left;
+			width: $page-header-logo-width;
+		}
+
+		.page-header-slogan{
+			float: right; 
+			text-align: right;
+			margin-top: 30px;
+			width: $page-width - $page-header-logo-width - 10;
+		}
+	}
+
+
+
+	#page-body{
+
+		#page-body-left{
+			float: left;
+			width: $page-width - $sidebar-width - 20;
+		}
+
+		#page-body-right{
+			float: right;
+			width: $sidebar-width;
+		}
+	}
+
+	.page-title{
+		width: $page-width;
+	}
+
+	#page-foot{
+		
+		
+	}
+}
+
+.clear{
+	clear: both;
+}

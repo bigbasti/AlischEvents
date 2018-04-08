@@ -1,0 +1,32 @@
+﻿@model IEnumerable<AlischEvents.Web.Models.Newsletter.NewsletterConsumer>
+
+@{
+    ViewBag.Title = "Newsletter Abonnenten";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+@section PageTitle{
+    Übersicht der Abonnenten
+}
+@Html.ActionLink("Neuen Newsletter erstellen", "Create") | @Html.ActionLink("Alle Newsletter", "Overview") | @Html.ActionLink("Übersicht Newsletter Empfänger", "User")
+
+
+<p>Hier finden sie alle E-Mail Adressen, die sich für den Empfang von Newslettern angemeldet haben.</p>
+
+<div>
+    <table cellpadding="10" cellpadding="0">
+        <thead>
+            <tr>
+                <td>E-Mail Adresse</td><td>Empangene Newsletter</td><td>Will weitere Newsletter empfangen?</td>
+            </tr>
+        </thead>
+        <tbody>
+        @foreach (var consumer in Model.ToList())
+        {
+            <tr>
+                <td>@consumer.Email</td><td>@if(consumer.EmailsReceived < 0){<text>Warten auf Bestätigung</text>}else{<text>@consumer.EmailsReceived</text>}</td><td>@(consumer.Active ? "Ja" : "Nein")</td>
+            </tr>
+        }
+        </tbody>
+    </table>
+</div>

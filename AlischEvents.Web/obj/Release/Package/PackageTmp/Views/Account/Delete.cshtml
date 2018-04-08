@@ -1,0 +1,39 @@
+﻿@model AlischEvents.Web.Models.Admin.SiteUser
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+@section PageTitle{
+    Benutzer "@Model.Username" Löschen
+}
+
+    <h3>Sind Sie sich sicher, dass Sie den Benutzer löschen wollen?</h3>
+    <p>Diese Aktion kann nicht wieder rückgängig gemacht werden!</p>
+
+    <fieldset>
+        <legend>Benutzerdetails</legend>
+
+        <table>
+            <tr>
+                <th>Vorname</th><td>@Html.DisplayFor(model => model.Firstname)</td>    
+            </tr>
+            <tr>
+                <th>Nachname</th><td>@Html.DisplayFor(model => model.Lastname)</td>    
+            </tr>
+            <tr>
+                <th>Benutzername</th><td>@Html.DisplayFor(model => model.Username)</td>    
+            </tr>
+            <tr>
+                <th>E-Mail Adresse</th><td>@Html.DisplayFor(model => model.Email)</td>    
+            </tr>
+        </table>
+
+    </fieldset>
+    @using (Html.BeginForm()) {
+        <p>
+            <input type="submit" value="Benutzer Löschen" /> |
+            @Html.ActionLink("Zurück zur Übersicht", "Index")
+        </p>
+    }

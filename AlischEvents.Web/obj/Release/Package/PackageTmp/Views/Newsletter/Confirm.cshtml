@@ -1,0 +1,28 @@
+﻿@{
+    ViewBag.Title = "Bestätigung";
+    ViewBag.Special = false;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    string title = "Newsletter Abmeldung";
+    if(ViewBag.Active){
+        title = "Newsletter Anmeldung";
+    }
+}
+
+@section PageHeading{
+    @title
+}
+
+@if (ViewBag.Active)
+{
+    <text><h3>Vielen Dank für ihr Interesse!</h3>
+        <p>Sie sind nun für unseren Newsletter angemeldet!</p>
+        <p><b>Sie erhalten in den nächsten Sekunden eine Bestätigunsemail mit einem Aktivierungs Link. Bitte klicken Sie den Link in der Email um Ihre E-Mail-Adresse zu bestätigen.</b></p>
+        <p>HINWEIS: Bitte prüfen Sie auch Ihren Spam-Ordner.</p></text>
+}
+else
+{
+    <text><h3>Ihre Abmeldung war erfolgreich!</h3>
+            <p>Sie werden keine weiteren Nachrichten mehr von uns erhalten!</p>
+            <p>Falls Sie es sich anders überlegen, wissen Sie ja wo Sie uns finden.</p></text>
+}

@@ -1,0 +1,22 @@
+﻿@model AlischEvents.Web.Models.Blog.BlogPost
+
+@{
+    ViewBag.Title = Model.Title;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="page-title">
+    <span>@Model.Title </span>
+</div>
+<div class="page-body-content">
+
+
+        @Html.Raw(Model.Content)
+
+        <div class="clear"></div>
+
+        <p>
+            Geschrieben von @Model.Author am @Model.Date
+        </p>
+
+</div>

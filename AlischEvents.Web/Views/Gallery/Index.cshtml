@@ -1,0 +1,51 @@
+﻿@model IEnumerable<AlischEvents.Web.Models.Galerie.Gallery>
+
+@{
+    ViewBag.Title = "Galerien";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+@section PageTitle{
+    Übersicht aller Galerien
+}
+
+<p>
+    @Html.ActionLink("Neue Galerie anlegen", "Create") | @Html.ActionLink("Schlüsselverwaltung aufrufen", "Index", "Token")
+</p>
+<table cellpadding="10">
+    <tr>
+        <th>
+            Titel
+        </th>
+        <th>
+            Ordnername
+        </th>
+        <th>
+            Schlüssel (Aktiv / Gesamt)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Title)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FolderName)
+        </td>
+        <td>
+            @item.AccessTokens.Where(t => t.IsActive == true).ToList().Count / 
+            @item.AccessTokens.ToList().Count
+        </td>
+        <td>
+            @Html.ActionLink("Informationen", "About", new { id=item.GalleryID }) |
+            @Html.ActionLink("Schlüssel", "Token", new { id=item.GalleryID }) |
+            @Html.ActionLink("Bearbeiten", "Edit", new { id=item.GalleryID }) |
+            @Html.ActionLink("Anzeigen", "Show", new { id=item.GalleryID }) |
+            @Html.ActionLink("Löschen", "Delete", new { id=item.GalleryID })
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,29 @@
+﻿@model AlischEvents.Web.Models.Security.LoginModel
+
+@{
+    ViewBag.Title = "Login";
+}
+
+<div class="page-title">
+    <span>Login zur Administration</span>
+</div>
+<div class="page-body-content">
+    <h3>Bitte geben Sie Ihren Benutzernamen und das Passwort ein.</h3>
+    @using (Html.BeginForm()) { 
+        
+        <table>
+            <tr>
+                <td colspan="3">@Html.ValidationSummary()</td>
+            </tr>
+            <tr>
+                <td>@Html.LabelFor(m => m.Username)</td><td>@Html.TextBoxFor(m => m.Username)</td><td>@Html.ValidationMessageFor(m => m.Username)</td>
+            </tr>
+            <tr>
+                <td>@Html.LabelFor(m => m.Password)</td><td>@Html.PasswordFor(m => m.Password)</td><td>@Html.ValidationMessageFor(m => m.Password)</td>
+            </tr>
+            <tr>
+                <td>&nbsp;</td><td><input type="submit" value="Einloggen" /></td><td>@Html.ActionLink("Passwort vergessen?", "RestorePassword", "Account")</td>
+            </tr>
+        </table>
+    }
+</div>

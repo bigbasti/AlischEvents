@@ -1,0 +1,75 @@
+﻿@model AlischEvents.Web.Models.Blog.BlogPost
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+@section HeadContent{
+    <script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+
+    @Html.CKEditorHeaderScripts()
+}
+
+@section PageTitle{
+    Artikel bearbeiten
+}
+
+    @using (Html.BeginForm()) {
+        @Html.ValidationSummary(true)
+
+        @Html.Hidden("BlogID", Model.BlogID)
+        @Html.Hidden("Author", Model.Author)
+        @Html.Hidden("PreviewImage", Model.PreviewImage)
+
+        @Html.HiddenFor(model => model.PostID)
+
+        <table cellpadding="10">
+            <tr>
+                <td colspan="2">
+                    @Html.EditorFor(model => model.Title, new { @class = "article-title" })
+                </td>
+            </tr>
+            <tr>
+                <td>@* In dieser Version nicht verfügbar!
+                    Kommentare erlauben: @Html.EditorFor(model => model.AllowComments)
+                    *@@Html.HiddenFor(model => model.AllowComments)
+                </td>
+                <td>
+                    Datum: @Html.EditorFor(model => model.Date)
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    Kurzbeschreibung: Dieses Feld sollte eine Kurze Beschreibung des Artikelinhalts enthalten, die bei der Blogübersicht angezeigt wird.
+                    @Html.TextAreaFor(model => model.PreviewText)
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    Inhalt: Dies ist der eigentliche Inhalt des Artikels.
+                    @Html.TextAreaFor(model => model.Content)
+                </td>
+            </tr>
+        </table>
+
+        <p>
+            <input type="submit" value="Speichern" /> |
+            @Html.EditorFor(m => m.Published) Artikel veröffentlichen
+        </p>
+
+    }
+    <script type="text/javascript">
+        CKEDITOR.replace('PreviewText',
+        {
+            filebrowserUploadUrl: '@Url.Action("UploadImage", "Site")/'
+        });
+        CKEDITOR.replace('Content',
+        {
+            filebrowserUploadUrl: '@Url.Action("UploadImage", "Site")/'
+        });
+    </script>
+    <div>
+        @Html.ActionLink("Zurück zur Übersicht", "Posts", "Blog", new { id = Model.BlogID }, null)
+    </div>

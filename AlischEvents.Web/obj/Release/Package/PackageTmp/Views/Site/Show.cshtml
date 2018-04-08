@@ -1,0 +1,18 @@
+﻿@model AlischEvents.Web.Models.Site.WebSite
+
+@{
+    ViewBag.Title = @Model.SiteTitle;
+    ViewBag.Special = @Model.IsSpecialSite;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@if (!Model.IsSpecialSite) { 
+    <text>
+        @section PageHeading{
+            @Html.Raw(Model.SiteTitle)
+        }
+    </text>
+}
+
+@Html.Raw(Model.SiteContent)

@@ -1,0 +1,78 @@
+﻿@model AlischEvents.Web.Models.Galerie.Gallery
+
+@{
+    ViewBag.Title = "Informationen";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    
+    string active;
+}
+
+@section PageTitle{
+    Informationen zu der Galerie @Model.Title
+}
+
+<h3>Auf dieser Seite finden Sie Informationen zu der Galerie.</h3>
+
+<h3>Inhalt der Galerie</h3>
+<p>Diese Galerie enthält momentan @ViewBag.FilesInGallery Datei(en).<br />
+    Wenn Sie weitere Dateien zu dieser Galerie hinzufügen möchten befolgen Sie bitte die Anleitung unter <a href="#AddFiles">Bilder zur Galerie hinzufügen</a></p>
+
+<h3>Zugangsschlüssel zu dieser Galerie</h3>
+@if (Model.AccessTokens.Count == 0) {
+    <p><strong>Achtung:</strong> Dieser Galerie sind momentan keine Zugangsschlüssel zugewiesen.<br />
+        Dadurch ist diese Galerie nicht erreichbar.</p>
+} else { 
+    <p>Folgende Schlüssel sind dieser Galerie zugeordnet:</p>
+    <table callpadding="5">
+        <tr>
+            <th>Schlüssel</th>
+            <th>Klicks übrig</th>
+            <th>Ablaufdatum</th>
+            <th>Aktiv?</th>
+        </tr>
+        @foreach (var token in Model.AccessTokens) {
+            {
+                 active  = token.IsActive == true ? "Ja" : "Nein";
+             }
+            <tr>
+                <td>@token.Token</td>
+                <td>@token.ClickLimitation</td>
+                <td>@token.DateLimitation</td>
+                <td>@active</td>
+            </tr>
+        }
+    </table>
+}
+<p>Wenn Sie weitere Schlüssel für diese Galerie erstellen wollen, so können Sie dies über die @Html.ActionLink("Galerie Übersicht", "Index") unter dem Menüpunkt "Schlüssel" tun.</p>
+
+<h3 id="AddFiles">Bilder zur Galerie hinzufügen</h3>
+<p>Wenn Sie Bilder zu der Galerie hinzufügen möchten, müssen Sie dies über das FTP-Protokoll machen.<br />
+    Dazu benötigen Sie ein FTP-Fähiges Programm wie zum Beispiel das kostenlose <a href="http://www.filezilla.de/download.htm" target="_blank">FileZilla</a>.</p>
+<p>Nachdem Sie FileZilla heruntergeladen und installiert haben können Sie nach <a href="http://www.filezilla.de/schnelleinstieg.htm" target="_blank">dieser Anleitung</a> vorgehen um Dateien hochzuladen.</p>
+<p>Um eine Verbindung mit dem Server herzustellen benötigen Sie drei Informationen:
+    <ul>
+        <li>IP-Adresse des Servers - Diese bekommen sie von Ihrem Hoster bzw. Ihrem Web-Space Anbieter.</li>
+        <li>Benutzername - Diesen bekommen Sie ebenfalls von Ihrem Hoster bzw. Ihrem Web-Space Anbieter.</li>
+        <li>Passwort - Dieser kommt ebenfalls von Ihrem Hoster bzw. Ihrem Web-Space Anbieter.</li>
+    </ul>
+</p>
+
+<p><strong>Nachdem die Verbindung zu dem Server hergestellt ist navigieren Sie bitte zu dem Pfad:</strong>
+    <ul>
+        <li>Content/galerie/</li>
+    </ul>
+</p>
+
+<p>Wenn hier noch kein Ordner mit dem Namen "@Model.FolderName" vorhanden ist legen Sie diesen bitte nun an. (Rechtsklick->Verzeichnis erstellen)</p>
+
+<p>Nun können Sie anfangen Ihre Bilder und Dateien, die Bestandteil der @Model.Title Galerie werden sollen in diesen Ordner zu Übertragen.<br />
+    Bitte beachten Sie, dass alle Bilder die Sie in diesen Ordner kopieren in der Galerie einsehbar sein werden.</p>
+
+<p>Bedenken Sie, dass die Bilder nicht zu groß sein sollten und eine Dateigröße von 200 KB pro Bild nicht überschreiten sollten.</p>
+
+<p><strong>Damit die Galerie nun noch erreichbar wird muss ein Schlüssel erzeugt werden und der Galerie zugewiesen werden.</strong></p>
+
+<p>
+    @Html.ActionLink("Galerie bearbeiten", "Edit", new { id=Model.GalleryID }) |
+    @Html.ActionLink("Zurück zur Übersicht", "Index")
+</p>

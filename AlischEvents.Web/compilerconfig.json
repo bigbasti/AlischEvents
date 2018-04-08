@@ -1,0 +1,10 @@
+﻿[
+  {
+    "outputFile": "Content/css/basic-layout.css",
+    "inputFile": "Content/css/basic-layout.scss"
+  },
+  {
+    "outputFile": "Content/css/site-parts.css",
+    "inputFile": "Content/css/site-parts.scss"
+  }
+]

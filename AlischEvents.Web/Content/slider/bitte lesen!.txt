@@ -1,0 +1,6 @@
+Die Bilder, die Sie hier finden werden auf der Startseite in dem Slider angezeigt.
+
+Wenn Sie neue Bilder hinzufügen oder alte ersetzen möchten achten Sie darauf,
+dass jedes Bild eine Auflösung von EXACKT 471 x 319 Pixel haben MUSS!
+
+Wenn diese Daten nicht passen wird das Design der Startseite Fehlerhaft! 

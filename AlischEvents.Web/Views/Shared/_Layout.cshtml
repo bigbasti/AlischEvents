@@ -1,0 +1,186 @@
+﻿
+@using AlischEvents.Web.Models
+@{
+    AlischDB db = new AlischDB();
+
+    if (ViewBag.Special == null) {
+        ViewBag.Special = true;
+    }
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>@ViewBag.Title</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <link rel="shortcut icon" href="/Content/grafik/logos/favicon.ico" />
+    <link href="@Url.Content("~/Content/css/Site.css")" rel="stylesheet" type="text/css"/>
+    <link href="@Url.Content("~/Content/css/bootstrap.min.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/css/basic-layout.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/css/site-parts.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/css/page-objects.css")" rel="stylesheet" type="text/css" />
+    <script src="@Url.Content("~/Scripts/jquery-1.11.3.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/bootstrap.min.js")" type="text/javascript"></script>
+    @RenderSection("HeadContent", required: false)
+</head>
+
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div id="page-header">
+                <div id="page-header-logo">
+                    <img class='img-responsive active' src='/Content/grafik/logos/logo_wide.png' />
+                    
+                    <!--<span id="header-logo-sub">Eventagentur</span>-->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span style="color: white;">Menü einblenden</span>
+                    <!--<span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>-->
+                </button>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+
+                    @{
+                        //oberes Menü laden
+                        var menu = db.BlogMenus.Where(i => i.MenuID == 1);
+                        var test = menu.ToList().ElementAt(0);
+                        var menuEntries = test.MenuEntries.Where(e => e.Position == 0).OrderBy(i => i.MenuOrderID).ToList();
+
+                        foreach (var entry in menuEntries)
+                        {
+
+                            string urlDummy = "<li class=\"main-menu-entry\">$LNK$</li>";
+                            string uri = "";
+
+                            //prüfen, ob die URL eine Externe URL ist
+                            if (!entry.URL.StartsWith("/"))
+                            {
+                                uri = entry.URL;
+                            }
+                            else
+                            {
+                                uri = Url.Content("~" + entry.URL);
+                            }
+
+                            string rawurl = "<a href=\"" + uri + "\">" + entry.Title + "</a>";
+                            urlDummy = urlDummy.Replace("$LNK$", rawurl);
+
+                            <text>@Html.Raw(urlDummy)</text>
+                        }
+                    }
+                </ul>
+            </div><!--/.nav-collapse -->
+        </div><!--/.container-fluid -->
+    </nav>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div id="page-body">
+                @if (ViewBag.Special == true)
+                {
+                    @RenderBody()
+                }
+                else
+                {
+                    <div class="page-title">
+                        <span>@RenderSection("PageHeading", required: false)</span>
+                    </div>
+
+                    <div class="page-body-content">
+                        @RenderBody()
+                    </div>
+                }
+
+                <div class="clear"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+
+
+                <div class="clear"></div>
+
+
+
+            <div id="page-foot">
+                <span style="float: left;">
+                            <span>
+                                @if (User.Identity.IsAuthenticated)
+                                {
+                                    <text>[@User.Identity.Name @Html.ActionLink("Ausloggen", "Logout", "Admin")]</text>
+                                }
+                                @Html.ActionLink("Administration", "Index", "Admin")
+                            </span>
+
+                            @{
+                                //unteres Menü laden
+                                menuEntries = test.MenuEntries.Where(e => e.Position == 1).OrderBy(i => i.MenuOrderID).ToList();
+
+                                foreach (var entry in menuEntries)
+                                {
+
+                                    string urlDummy = "<span>$LNK$</span>";
+                                    string uri = "";
+
+                                    //prüfen, ob die URL eine Externe URL ist
+                                    if (!entry.URL.StartsWith("/"))
+                                    {
+                                        uri = entry.URL;
+                                    }
+                                    else
+                                    {
+                                        uri = Url.Content("~" + entry.URL);
+                                    }
+
+                                    string rawurl = "<a href=\"" + uri + "\">" + entry.Title + "</a>";
+                                    urlDummy = urlDummy.Replace("$LNK$", rawurl);
+
+                                    <text>@Html.Raw(urlDummy)</text>
+                                }
+                            }
+                        </span>
+                <span style="float: right">
+                            <iframe src="//www.facebook.com/plugins/like.php?href=https%3A%2F%2Fwww.facebook.com%2Fpages%2FAlisch-Eventagentur%2F218490274885294&amp;send=false&amp;layout=button_count&amp;width=150&amp;show_faces=false&amp;font&amp;colorscheme=light&amp;action=like&amp;height=21" scrolling="no" frameborder="0" style="border: none; overflow: hidden; width: 150px; height: 21px;" allowTransparency="true"></iframe>
+                        </span>
+                <div style="clear: both"/>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+
+
+
+            
+            <script type="text/javascript">
+
+                var _gaq = _gaq || [];
+                _gaq.push(['_setAccount', 'UA-28395972-1']);
+                _gaq.push(['_trackPageview']);
+
+                (function () {
+                    var ga = document.createElement('script');
+                    ga.type = 'text/javascript';
+                    ga.async = true;
+                    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+                    var s = document.getElementsByTagName('script')[0];
+                    s.parentNode.insertBefore(ga, s);
+                })();
+
+            </script>
+</body>
+</html>

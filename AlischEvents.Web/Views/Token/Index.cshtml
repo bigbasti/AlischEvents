@@ -1,0 +1,60 @@
+﻿@model IEnumerable<AlischEvents.Web.Models.Galerie.AccessToken>
+
+@{
+    ViewBag.Title = "Übersicht aller Schlüssel";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+@section PageTitle{
+    Übersicht aller Schlüssel
+}
+
+<p>
+    @Html.ActionLink("Neuen Schlüssel anlegen", "Create")
+</p>
+<table cellpadding="10">
+    <tr>
+        <th>
+            Aktiv?
+        </th>
+        <th>
+            Schlüssel
+        </th>
+        <th>
+            Dateibegrenzung
+        </th>
+        <th>
+            Klicks übrig
+        </th>
+        <th>
+            Ablaufdatum
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.IsActive)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Token)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FileLimitation)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ClickLimitation)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DateLimitation)
+        </td>
+        <td>
+            @Html.ActionLink("Bearbeiten", "Edit", new { id=item.TokenID }) |
+            @Html.ActionLink("Sperren / Entsprerren", "Toggle", new { id=item.TokenID }) |
+            @Html.ActionLink("Löschen", "Delete", new { id=item.TokenID })
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,32 @@
+﻿@{
+    ViewBag.Title = "Newsletter";
+    ViewBag.Special = false;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section PageHeading{
+    Newsletter Abonnieren / Kündigen
+}
+
+<h3>Unser Newsletter</h3>
+<p>Möchten Sie immer auf dem neuesten Stand sein und keines unserer Events verpassen? Dann tragen Sie Sich doch für unseren Newsletter ein.</p>
+
+<p>In unserem Newsletter informieren wir Sie über:
+    <ul>
+        <li>Neuigkeiten aus unserem Newsbereich</li>
+        <li>Neue Veranstaltungen</li>
+        <li>Durchgeführte Events</li>
+        <li>Besondere Aktionen für unsere Newsletter Abonnenten</li>
+    </ul>
+</p>
+
+<h3>Anmelden / Abmelden</h3>
+<p>Tragen Sie einfach Ihre EMail Adresse in das untere Textfeld ein und klicken Sie auf "Senden".<br />
+    Wenn Sie bereits für den Newsletter angemeldet sind und sich austragen möchten, tragen Sie ebenfalls ihre EMail Adresse ein und klicken dann auf "Senden". Das System erkennt, dass Sie sich austrgen wollen. Sie bekommen dann keine weiteren Nachrichten mehr von uns.</p>
+
+<p>
+    @using (Html.BeginForm("CheckEmail", "Newsletter"))
+    {
+        <text>Ihre E-Mail Adresse:@Html.TextBox("email", "", new {@class="form-control"}) <input type="submit" value="Senden" class="btn btn-default"/></text> 
+    }
+</p>

@@ -1,0 +1,24 @@
+﻿@model AlischEvents.Web.Models.Site.WebSite
+
+@{
+    ViewBag.Title = "Danke für die Anfrage";
+    ViewBag.Special = false;
+}
+
+
+@section HeadContent{
+
+}
+
+<text>
+    @section PageHeading{
+        Danke für Ihre Kontaktaufnahme
+    }
+</text>
+
+
+@foreach (var i in ViewData.Keys) { 
+    @Html.Raw(i) 
+    <text>-></text>
+    @Html.Raw(ViewData[i].ToString());
+}

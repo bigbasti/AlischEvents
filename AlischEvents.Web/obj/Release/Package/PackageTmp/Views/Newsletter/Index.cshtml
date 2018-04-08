@@ -1,0 +1,27 @@
+﻿@model IEnumerable<AlischEvents.Web.Models.Newsletter.Newsletter>
+
+@{
+    ViewBag.Title = "Übersicht Newsletter";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+@section PageTitle{
+    Newsletter
+}
+
+@Html.ActionLink("Neuen Newsletter erstellen", "Create") | @Html.ActionLink("Alle Newsletter", "Overview") | @Html.ActionLink("Übersicht Newsletter Empfänger", "User")
+
+<h3>Die letzten 5 Newsletter</h3>
+
+@if (Model.ToList().Count == 0)
+{
+    <text>Es wurden noch keine Newsletter verschickt!</text>
+}
+
+@foreach (AlischEvents.Web.Models.Newsletter.Newsletter n in Model.ToList())
+{
+    <div>
+        <h4>@n.Subject</h4>
+        <span>Gesendet am @n.Date.Date an @n.Recipients Empfänger</span>
+    </div>
+}

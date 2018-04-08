@@ -1,0 +1,72 @@
+﻿@model AlischEvents.Web.Models.Galerie.AccessToken
+
+@{
+    ViewBag.Title = "Schlüssel bearbeiten";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+@section PageTitle{
+    Schlüssel bearbeiten
+}
+
+@section HeadContent{
+    <script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+}
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+    <fieldset>
+        <legend>AccessToken</legend>
+
+        @Html.HiddenFor(model => model.TokenID)
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.IsActive)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.IsActive)
+            @Html.ValidationMessageFor(model => model.IsActive)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Token)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Token)
+            @Html.ValidationMessageFor(model => model.Token)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.FileLimitation)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.FileLimitation)
+            @Html.ValidationMessageFor(model => model.FileLimitation)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ClickLimitation)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.ClickLimitation)
+            @Html.ValidationMessageFor(model => model.ClickLimitation)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.DateLimitation)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.DateLimitation)
+            @Html.ValidationMessageFor(model => model.DateLimitation)
+        </div>
+
+        <p>
+            <input type="submit" value="Änderungen speichern" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Zurück zur Übersicht", "Index")
+</div>

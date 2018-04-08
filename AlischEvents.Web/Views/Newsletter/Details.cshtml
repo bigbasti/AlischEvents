@@ -1,0 +1,20 @@
+﻿@model AlischEvents.Web.Models.Newsletter.Newsletter
+
+@{
+    ViewBag.Title = "Newsletter Details";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+@section PageTitle{
+    Details zum Newsletter
+}
+@Html.ActionLink("Neuen Newsletter erstellen", "Create") | @Html.ActionLink("Alle Newsletter", "Overview") | @Html.ActionLink("Übersicht Newsletter Empfänger", "User")
+
+<p>Bitte beachten Sie, dass dieser Newsletter bereits versandt wurde und nicht mehr bearbeitet werden kann!</p>
+
+<h3>@Html.Raw(Model.Subject)</h3>
+
+@Html.Raw(Model.Content)
+
+<hr />
+<p>Dieser newslettwe ging an @Model.Recipients Empfänger</p>

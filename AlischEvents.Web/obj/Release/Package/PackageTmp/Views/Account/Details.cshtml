@@ -1,0 +1,36 @@
+﻿@model AlischEvents.Web.Models.Admin.SiteUser
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+@section PageTitle{
+    Details zu Benutzer "@Model.Username"
+}
+    <h3>Alle Informationen eines Benutzers</h3>
+    <p>Es ist (momentan) nicht möglich die Daten eines Benutzers zu verändern</p>
+
+    <fieldset>
+        <legend>Benutzerdetails</legend>
+
+        <table>
+            <tr>
+                <th>Vorname</th><td>@Html.DisplayFor(model => model.Firstname)</td>    
+            </tr>
+            <tr>
+                <th>Nachname</th><td>@Html.DisplayFor(model => model.Lastname)</td>    
+            </tr>
+            <tr>
+                <th>Benutzername</th><td>@Html.DisplayFor(model => model.Username)</td>    
+            </tr>
+            <tr>
+                <th>E-Mail Adresse</th><td>@Html.DisplayFor(model => model.Email)</td>    
+            </tr>
+        </table>
+
+    </fieldset>
+    <p>
+        @*Html.ActionLink("Edit", "Edit", new { id=Model.UserID }) | *@
+        @Html.ActionLink("Zurück zur Übersicht", "Index")
+    </p>

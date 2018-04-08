@@ -1,0 +1,68 @@
+﻿@model IEnumerable<AlischEvents.Web.Models.Galerie.AccessToken>
+
+@{
+    ViewBag.Title = "Schlüsselübersicht";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    IEnumerable<SelectListItem> tokens = ViewBag.Tokens;
+    int galleryID = ViewBag.GalleryID;
+}
+
+@section PageTitle{
+    Übersicht zugewiesener Schlüssel
+}
+
+<p>
+    @Html.ActionLink("Einen neuen Schlüssel anlegen", "Create", "Token")
+    @using (Html.BeginForm("AddToken", "Gallery", FormMethod.Post)) {
+        <text>
+            Diesen Schlüssel zu der Galerie hinzufügen: 
+            @if (tokens.ToList().Count > 0) { 
+                @Html.DropDownList("Token", tokens) <input id="Send" type="submit" value="Hinzufügen" />
+            } else { 
+                <text>Keine ungenutzten Schlüssel vorhanden, @Html.ActionLink("bitte legen Sie neue an", "Create", "Token").</text>
+            }
+            @Html.Hidden("Gallery", galleryID)
+        </text>
+    }
+</p>
+<table cellpadding="10">
+    <tr>
+        <th>
+            Aktiv?
+        </th>
+        <th>
+            Schlüssel
+        </th>
+        <th>
+            Klicks übrig
+        </th>
+        <th>
+            Ablaufdatum
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.IsActive)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Token)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ClickLimitation)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DateLimitation)
+        </td>
+        <td>
+            @Html.ActionLink("Bearbeiten", "Edit", "Token", new { id = item.TokenID }, null) |
+            @Html.ActionLink("Sperren / Entsprerren", "Toggle", "Token", new { id = item.TokenID }, null) |
+            @Html.ActionLink("Aus Galerie entfernen", "Remove", new { id = item.TokenID, gal = galleryID }) |
+            @Html.ActionLink("Löschen", "Delete", "Token", new { id = item.TokenID }, null)
+        </td>
+    </tr>
+}
+
+</table>

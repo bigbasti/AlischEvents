@@ -1,0 +1,65 @@
+﻿@model IEnumerable<AlischEvents.Web.Models.Blog.BlogPost>
+      
+@{
+    ViewBag.Title = "Blogbeiträge";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+@section PageTitle{
+    Artikel des Blogs @ViewBag.BlogTitle
+}
+    <p>
+        @Html.ActionLink("Neuen Artikel in diesem Blog anlegen", "Create", "Post", new { id = @ViewBag.BlogID }, null)
+    </p>
+    <table cellpadding="5">
+        <tr>
+            <th>
+                Titel
+            </th>
+            <th>
+                Autor
+            </th>
+            <th>
+                Datum
+            </th>
+            <th>
+                Kommentare erlaubt?
+            </th>
+            <th>
+                Kommentare
+            </th>
+            <th>
+                Veröffentlicht?
+            </th>
+            <th></th>
+        </tr>
+
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Author)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AllowComments)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Comments.Count)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Published)
+            </td>
+            <td>
+                @Html.ActionLink("Bearbeiten", "Edit", "Post", new { id=item.PostID }, null) |
+                @Html.ActionLink("Anzeigen", "Show", "Post", new { id=item.PostID }, null ) |
+                @Html.ActionLink("Löschen", "Delete", "Post", new { id=item.PostID }, null )
+            </td>
+        </tr>
+    }
+
+    </table>

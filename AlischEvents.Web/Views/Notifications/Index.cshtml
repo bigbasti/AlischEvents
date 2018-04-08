@@ -1,0 +1,42 @@
+﻿@model IEnumerable<AlischEvents.Web.Models.Kontakt.ContactRequest>
+
+@{
+    ViewBag.Title = "Benachrichtigungen";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+@section PageTitle{
+    Ihre Benachrichtigungen
+}
+    <h3>Übersicht über die letzten Benachrichtigungen</h3>
+    <table cellpadding="10">
+        <tr>
+            <th>
+                Datum / Zeit
+            </th>
+
+            <th>
+                Betreff
+            </th>
+            <th></th>
+        </tr>
+
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Date)
+            </td>
+            <td>
+                @if (!item.Read) { 
+                    <strong>@Html.ActionLink(item.Subject, "Show", "Notifications", new { id = item.RequestID }, null)</strong>
+                } else {
+                    @Html.ActionLink(item.Subject, "Show", "Notifications", new { id = item.RequestID }, null)
+                }
+            </td>
+            <td>
+                @Html.ActionLink("Löschen", "Delete", new { id = item.RequestID })
+            </td>
+        </tr>
+    }
+
+    </table>

@@ -1,0 +1,20 @@
+﻿@model AlischEvents.Web.Models.Site.WebSite
+
+@{
+    ViewBag.Title = "Seite löschen";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+@section PageTitle{
+    Seite löschen
+}
+
+    <h3>Möchten Sie die Seite "@Model.SiteTitle" wirklich löschen?</h3>
+    <p>Dies kann nicht wieder rückgängig gemacht werden!</p>
+
+    @using (Html.BeginForm()) {
+        <p>
+            <input type="submit" value="Entgültig löschen" /> |
+            @Html.ActionLink("Zurück zur Übersicht", "Index")
+        </p>
+    }

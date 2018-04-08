@@ -1,0 +1,24 @@
+﻿@model AlischEvents.Web.Models.Site.WebSite
+
+@{
+    ViewBag.Title = @Model.SiteTitle;
+    ViewBag.Special = @Model.IsSpecialSite;
+}
+
+
+@section HeadContent{
+
+}
+
+@if (!Model.IsSpecialSite) { 
+    <text>
+        @section PageHeading{
+            @Html.Raw(Model.SiteTitle)
+        }
+    </text>
+}
+
+@if (ViewBag.ErrorMessage != null) { 
+    <strong><span class="field-validation-error"><h3>@ViewBag.ErrorMessage</h3></span></strong>
+}
+@Html.Raw(Model.SiteContent)

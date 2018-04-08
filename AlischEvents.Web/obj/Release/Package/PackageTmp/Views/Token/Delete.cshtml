@@ -1,0 +1,44 @@
+﻿@model AlischEvents.Web.Models.Galerie.AccessToken
+
+@{
+    ViewBag.Title = "Schlüssel Löschen";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+@section PageTitle{
+    Schlüssel Löschen
+}
+
+<h3>Möchten Sie diesen Schlüssel wirklich löschen?</h3>
+
+    <div class="display-label">IsActive</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.IsActive)
+    </div>
+
+    <div class="display-label">Token</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Token)
+    </div>
+
+    <div class="display-label">FileLimitation</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.FileLimitation)
+    </div>
+
+    <div class="display-label">ClickLimitation</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ClickLimitation)
+    </div>
+
+    <div class="display-label">DateLimitation</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.DateLimitation)
+    </div>
+
+@using (Html.BeginForm()) {
+    <p>
+        <input type="submit" value="Schlüssel Löschen" /> |
+        @Html.ActionLink("Zurück zur Übersicht", "Index")
+    </p>
+}

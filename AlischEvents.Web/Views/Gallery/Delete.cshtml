@@ -1,0 +1,29 @@
+﻿@model AlischEvents.Web.Models.Galerie.Gallery
+
+@{
+    ViewBag.Title = "Galerie löschen";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+@section PageTitle{
+    Galerie @Model.Title löschen
+}
+
+<h3>Bitte beachten Sie, dass die Galerie nur aus der Datenbank entfernt wird. Alle Bilder und hochgeladenen Dateien bleiben weterhin unter dem Ordner erreichbar und müssen manuell gelöscht werden!</h3>
+
+    <div class="display-label"><strong>Titel</strong></div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Title)
+    </div>
+
+    <div class="display-label"><strong>Ordnername</strong></div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.FolderName)
+    </div>
+
+@using (Html.BeginForm()) {
+    <p>
+        <input type="submit" value="Galerie löschen" /> |
+        @Html.ActionLink("Zurück zur Übersicht", "Index")
+    </p>
+}

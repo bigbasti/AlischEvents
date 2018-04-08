@@ -1,0 +1,22 @@
+﻿@model AlischEvents.Web.Models.Blog.BlogPost
+
+@{
+    ViewBag.Title = "Artikel löschen";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+@section PageTitle{
+    Beitrag löschen
+}
+
+<h3>Möchten Sie diesen Artikel wirklich löschen?</h3>
+<p>Es werden auch alle dazugehörenden Kommentare gelöscht.</p>
+
+    <div class="display-label"><strong>Titel:</strong> @Html.DisplayFor(model => model.Title)</div>
+
+@using (Html.BeginForm()) {
+    <p>
+        <input type="submit" value="Artikel löschen" /> |
+        @Html.ActionLink("Zurück zur Übersicht", "Posts", "Blog", new { id = Model.BlogID }, null)
+    </p>
+}

@@ -1,0 +1,56 @@
+﻿@model IEnumerable<AlischEvents.Web.Models.Site.WebSite>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+@section PageTitle{
+    Bereits angelegte Seiten
+}
+
+    <h3>Übersicht aller erstellten Seiten</h3>
+
+    <p>
+        @Html.ActionLink("Neue Seite anlegen", "Create")
+    </p>
+    <table width="900" cellpadding="10">
+        <tr>
+            <th>
+                Titel
+            </th>
+            <th>
+                Beschreibung
+            </th>
+            <th>
+                Im Menü anzeigen?
+            </th>
+            <th>
+                Besondere Seite?
+            </th>
+            <th></th>
+        </tr>
+
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.SiteTitle)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SiteLabel)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ShowOnMenu)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsSpecialSite)
+            </td>
+            <td>
+                @Html.ActionLink("Bearbeiten", "Edit", new { id=item.SiteID }) |
+                @Html.ActionLink("Anzeigen", "Show", new { id=item.SiteID }) |
+                @Html.ActionLink("Löschen", "Delete", new { id=item.SiteID })
+            </td>
+        </tr>
+    }
+
+    </table>

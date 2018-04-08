@@ -1,0 +1,44 @@
+﻿@model IEnumerable<AlischEvents.Web.Models.Blog.Blog>
+
+@{
+    ViewBag.Title = "Blogs";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+@section PageTitle{
+    Blogs
+}
+    <h3>Übersicht aller erstellter Blogs</h3>
+    <p>Hier können Sie Blogs anlegen und bearbeiten, wenn Sie neue Einträge hinzufügen wollen klicken Sie auf "Beiträge"</p>
+    <p>
+        @Html.ActionLink("Neuen Blog anlegen", "Create")
+    </p>
+    <table width="500" cellpadding="10">
+        <tr>
+            <th>
+                Name
+            </th>
+            <th>
+                Title
+            </th>
+            <th></th>
+        </tr>
+
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.ActionLink("Bearbeiten", "Edit", new { id=item.BlogID }) |
+                @Html.ActionLink("Anzeigen", "Show", new { id=item.BlogID }) |
+                @Html.ActionLink("Löschen", "Delete", new { id=item.BlogID }) |
+                @Html.ActionLink("Beiträge", "Posts", new { id=item.BlogID })
+            </td>
+        </tr>
+    }
+
+    </table>

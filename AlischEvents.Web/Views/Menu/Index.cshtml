@@ -1,0 +1,63 @@
+﻿@model IOrderedEnumerable<AlischEvents.Web.Models.Menu.MenuEntry>
+
+@using AlischEvents.Web.Models.Menu;
+
+@{
+    ViewBag.Title = "Menüanordnung";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+@section PageTitle{
+    Anordnung des Menüs verändern
+}
+    <h3>Benutzen Sie die Pfeile um die Menüpunkte an die gewünschte Position zu bewegen</h3>
+
+    <table width="500" cellpadding="10">
+        @{ 
+            int counter = 0;
+
+            int sitesCount = Model.ToList().Count;
+
+            MenuChange[] sites = new MenuChange[sitesCount];
+            
+            int c = 0;
+            foreach(var s in Model){
+                if(sites[c] == null){
+                    sites[c] = new MenuChange();   
+                }
+                if(c > 0){
+                    sites[c - 1].ChangeTo = s.MenuOrderID;
+                }
+                if (c < sitesCount - 1) {
+                    if (sites[c + 1] == null) {
+                        sites[c + 1] = new MenuChange();
+                    }
+                    sites[c + 1].ChangeFrom = s.MenuOrderID;
+                }
+
+                sites[c].SiteTitle = s.Title;
+                sites[c].SiteID = s.MenuOrderID;
+
+                
+                c++;
+            }
+            
+        }
+        @foreach (MenuChange m in sites) {
+            <text>
+                <tr>
+                    <td><h3>@m.SiteTitle</h3></td>
+                    <td>
+                        @if(counter > 0){
+                            @Html.ActionLink("up", "Move", "Menu", new { id = m.ChangeFrom, to = m.SiteID }, new { @class = "arrow-up" })
+                        }
+                        @if (counter < sitesCount - 1) {
+                            @Html.ActionLink("down", "Move", "Menu", new { id = m.ChangeTo, to = m.SiteID }, new { @class = "arrow-down" })
+                        }
+                    </td>
+                </tr>
+            </text>
+
+            counter++;
+        }
+    </table>

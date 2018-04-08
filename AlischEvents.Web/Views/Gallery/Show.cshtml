@@ -1,0 +1,51 @@
+﻿@model AlischEvents.Web.Models.Galerie.ShowGalleryModel
+
+@{
+	ViewBag.Title = "Galerie " + Model.GalleryInfo.Title;
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section HeadContent{
+	<script src="@Url.Content("~/Scripts/jquery.prettyPhoto.js")" type="text/javascript"></script>
+	<link href="@Url.Content("~/Content/css/prettyPhoto.css")" rel="stylesheet" type="text/css" />
+}
+
+
+<div class="page-title">
+	<span>Galerie @Model.GalleryInfo.Title</span>
+</div>
+<div class="page-body-content">
+	<h3>Willkommen in der Galerie</h3>
+    <p>Wenn Sie ein Bild herunterladen möchten, klicken Sie darauf mit der Rechten Maustaste und wählen Sie "Bild Speichern unter..." aus.</p>
+
+	<p>
+        <ul class="gallery clearfix">
+		@foreach (var pic in Model.ImagePaths) {
+			<text><li><a href="@pic" rel="prettyPhoto[gallery1]"><img src="@pic" width="200" alt="" /></a></li></text>
+		}
+        </ul>
+	</p>
+
+
+	<script type="text/javascript" charset="utf-8">
+		$(document).ready(function () {
+			$("area[rel^='prettyPhoto']").prettyPhoto();
+
+			$(".gallery:first a[rel^='prettyPhoto']").prettyPhoto({ animation_speed: 'normal', theme: 'pp_default', slideshow: 3000, autoplay_slideshow: false });
+			$(".gallery:gt(0) a[rel^='prettyPhoto']").prettyPhoto({ animation_speed: 'fast', slideshow: 10000, hideflash: true });
+
+			$("#custom_content a[rel^='prettyPhoto']:first").prettyPhoto({
+				custom_markup: '<div id="map_canvas" style="width:260px; height:265px"></div>',
+				changepicturecallback: function () { initialize(); }
+			});
+
+			$("#custom_content a[rel^='prettyPhoto']:last").prettyPhoto({
+				custom_markup: '<div id="bsap_1259344" class="bsarocks bsap_d49a0984d0f377271ccbf01a33f2b6d6"></div><div id="bsap_1237859" class="bsarocks bsap_d49a0984d0f377271ccbf01a33f2b6d6" style="height:260px"></div><div id="bsap_1251710" class="bsarocks bsap_d49a0984d0f377271ccbf01a33f2b6d6"></div>',
+				changepicturecallback: function () { _bsap.exec(); }
+			});
+		});
+	</script>
+	<p>
+		Sie haben für diesen Inhalt den Zugangscode "@Model.Token.Token" genutzt. Dieser Code wird am @Model.Token.DateLimitation ablaufen.<br />Falls Sie dann weiterhin Zugriff benötigen wenden Sie sich bitte an uns.
+	</p>
+</div>

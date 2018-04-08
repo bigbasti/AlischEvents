@@ -1,0 +1,30 @@
+﻿@model AlischEvents.Web.Models.Blog.Blog
+
+@{
+    ViewBag.Title = "Löschen";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+@section PageTitle{
+    Blog löschen
+}
+    <h3>Sind Sie sicher, dass Sie diesen Blog löschen möchten? Es werden auch alle Artikel des Blogs und deren Kommentare entfernt. Dies kann nicht rückgängig gemacht werden!</h3>
+    <fieldset>
+        <legend>Blog Informationen</legend>
+
+        <div class="display-label"><h3>Name</h3></div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.Name)
+        </div>
+
+        <div class="display-label"><h3>Titel</h3></div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.Title)
+        </div>
+    </fieldset>
+    @using (Html.BeginForm()) {
+        <p>
+            <input type="submit" value="Blog und Artikel inkl. Kommentare löschen" /> |
+            @Html.ActionLink("Zurück zur Übersicht", "Index")
+        </p>
+    }

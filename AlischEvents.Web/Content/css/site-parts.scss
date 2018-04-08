@@ -1,0 +1,486 @@
+﻿$tiza-font-path:					"../fonts/Folks-Bold.ttf";
+$logo-mailn-size:					80px;
+$page-header-height:				100px;
+$page-foot-text-color:				gray;
+
+@mixin text-shadow($var1, $var2, $var3, $var4){
+	text-shadow: #{$var1}px #{$var2}px #{$var3}px #{$var4};
+	-o-text-shadow: #{$var1}px #{$var2}1px #{$var3}px #{$var4};
+	-moz-text-shadow: #{$var1}px #{$var2}px #{$var3}px #{$var4};
+	-webkit-text-shadow: #{$var1}px #{$var2}px #{$var3}px #{$var4};
+}
+
+@mixin border-radius($radius){
+	border-radius: #{$radius}px;
+	-o-border-radius: #{$radius}px;
+	-moz-border-radius: #{$radius}px;
+	-webkit-border-radius: #{$radius}px;
+}
+
+@mixin border-radius-top($radius){
+	-webkit-border-top-right-radius: #{$radius}px;
+	-webkit-border-top-left-radius: #{$radius}px;
+	-moz-border-radius-topright: #{$radius}px;
+	-moz-border-radius-topleft: #{$radius}px;
+	border-top-right-radius: #{$radius}px;
+	border-top-left-radius: #{$radius}px;
+}
+
+@mixin border-radius-bottom($radius){
+	-webkit-border-bottom-right-radius: #{$radius}px;
+	-webkit-border-bottom-left-radius: #{$radius}px;
+	-moz-border-radius-bottomright: #{$radius}px;
+	-moz-border-radius-bottomleft: #{$radius}px;
+	border-bottom-right-radius: #{$radius}px;
+	border-bottom-left-radius: #{$radius}px;
+}
+
+@mixin box-shadow($var1, $var2, $var3, $var4){
+	box-shadow: #{$var1}px #{$var2}px #{$var3}px #{$var4};
+	-o-box-shadow: #{$var1}px #{$var2}px #{$var3}px #{$var4};
+	-moz-box-shadow: #{$var1}px #{$var2}px #{$var3}px #{$var4};
+	-webkit-box-shadow: #{$var1}px #{$var2}px #{$var3}px #{$var4};
+}
+
+#page-header-logo{
+	@include text-shadow(0, 1, 2, #050505);
+
+	color: #d63a3a;
+	padding-left: 10px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+	font:{
+		size: $logo-mailn-size;
+	}
+	//background:{
+	//	image: url("../grafik/logos/logo_wide.png");
+	//	position: left;
+	//	repeat: no-repeat;
+	//}
+}
+
+#header-logo-sub{
+	@include text-shadow(0, 1, 2, #050505);
+
+	padding-top: 0px;
+	color: #fffbaa;
+	font-size: 25px;
+}
+
+.container-fluid{
+	
+    background: url("../grafik/design/menu_bg.png") repeat-x right top;
+    background-color: gray !important;
+    @include border-radius(4);
+    @media (min-width: 768px){
+        padding: 0px !important;
+        height: 40px !important;
+    }
+}
+
+.navbar{
+    min-height: 20px;
+    margin-bottom: 0px !important;
+    background: {
+			color: gray;
+			image: url("../grafik/design/menu_bg.png") !important;
+		}
+    @include border-radius(4);
+    @media (min-width: 768px){
+        height: 40px;
+    }
+    @media (max-width: 992px){
+        overflow: overlay !important;
+    }
+    
+}
+
+.icon-bar{
+    background-color: white !important;
+}
+
+.navbar-toggle {
+    padding-top: 6px !important;
+    margin-right: 3px !important;
+    margin-bottom: 6px !important;
+    margin-top: 3px !important;
+}
+
+//Navbar collapse ueberschreiben damit es bereits bei 992px gekürzt wird
+//und somit das menü nicht überschwappt
+/*@media (max-width: 992px) {
+    .navbar-header {
+        float: none;
+    }
+    .navbar-left,.navbar-right {
+        float: none !important;
+    }
+    .navbar-toggle {
+        display: block;
+    }
+    .navbar-collapse {
+        border-top: 1px solid transparent;
+        box-shadow: inset 0 1px 0 rgba(255,255,255,0.1);
+    }
+    .navbar-fixed-top {
+		top: 0;
+		border-width: 0 0 1px;
+	}
+    .navbar-collapse.collapse {
+        display: none!important;
+    }
+    .navbar-nav {
+        float: none!important;
+		margin-top: 7.5px;
+	}
+	.navbar-nav>li {
+        float: none;
+    }
+    .navbar-nav>li>a {
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+    .collapse.in{
+  		display:block !important;
+	}
+}*/
+
+.navbar-collapse{
+	//padding: 0px !important;
+    //height: 40px !important;
+    @include border-radius(4);
+
+    .main-menu-entry{
+        height: 40px !important;
+
+        a {
+            padding-top: 10px !important;
+        }
+    }
+
+    padding-right: 0 !important;
+    padding-left: 0 !important;
+
+    .main-menu-entry {
+				//float: left;
+				//background-image: url("../grafik/design/menu_bg.png");
+				vertical-align: baseline;
+				@include text-shadow(0, 1, 2, #050505);
+
+				a {
+					display: block;
+					height: 30px;
+					margin: 0px 2px 1px 0px;
+					padding: 9px 30px 0px 30px;
+					color: white !important;
+					font-size: 14px;
+					text-decoration: none;
+					-moz-box-sizing: initial !important;
+					-webkit-box-sizing: initial !important;
+					box-sizing: initial !important;
+
+					@include text-shadow(0, 1, 2, #050505);
+
+					&:hover {
+						@include border-radius(4);
+						background: #6A1538 url('../grafik/design/menu-hover.png') repeat-x right top;
+					}
+				}
+
+				display: inline;
+                @media (min-width: 768px){
+                    background: transparent url('../grafik/design/menu-divider.png') repeat-y right top;
+                    float: left;
+                }
+			}
+        
+}
+
+#page-header-navigation {
+	text-align: left;
+
+
+	#page-main-menu {
+		//box-shadow: inset 0px 0px 10px #333333;
+		border-radius: 4px !important;
+
+		background: {
+			//color: #d63a3a;
+			image: url("../grafik/design/menu_bg.png") !important;
+		}
+
+		height: 40px;
+		//padding-top: 20px;
+		.main-menu {
+
+
+			
+
+			.main-menu-entry-active {
+				float: left;
+				background: transparent url('../grafik/design/menu-divider.png') repeat-y right top;
+				vertical-align: baseline;
+				@include text-shadow(0, 1, 2, #050505);
+
+				a {
+					display: block;
+					height: 30px;
+					margin: 0px 2px 1px 0px;
+					padding: 9px 30px 0px 30px;
+					color: white;
+					font-size: 14px;
+					text-decoration: none;
+
+					@include text-shadow(0, 1, 2, #050505);
+
+					@include border-radius(4);
+					background: #6A1538 url('../grafik/design/menu-hover.png') repeat-x right top;
+				}
+
+				display: inline;
+			}
+
+			.active-menu {
+			}
+
+			list: {
+				style: none;
+			}
+
+			padding: 0px;
+		}
+	}
+}
+
+.carousel-inner{
+    img{
+        border-radius: 5px;
+
+    }
+    //box-shadow: 0px 0px 3px #000000;
+}
+.carousel{
+    padding: 20px 30px !important;
+}
+
+#feature{
+
+	@include border-radius(4);
+	@include box-shadow(1, 1, 0, #578ba1);
+	
+
+    @media (min-width: 768px){
+        background: url('../grafik/design/feature-bg.png') no-repeat left top;
+    }
+    background-color: #963766;
+	margin-top: 20px;
+
+	#feature-slider{
+		position: relative;
+        padding-right: 35px;
+		margin: 0px 0px 0px 20px;
+
+		.zone{
+			padding: 12px;
+
+		}
+	}
+
+	#feature-desc{
+		padding-top: 12px;
+		//margin: 10px 0px 0px 20px;
+		color: white;
+
+
+		h1{
+			font-size: 36px;
+			font-family: 'Yanone Kaffeesatz', Tahoma, Sans-serif;
+			color: white;
+			line-height: 36px;
+			text-shadow: 0px -1px 0px #558599;
+			font-weight: normal;
+			margin: 8px 0;
+			outline: 0;
+			vertical-align: baseline;
+            @media (max-width: 991px){
+                    font-size: 30px;
+                }
+		}
+
+		p{
+			font-size: 14px;
+			line-height: 150%;
+		}
+	}
+
+    #feature-desc-xs{
+		padding: 0px 50px;
+		//margin: 10px 0px 0px 20px;
+		color: white;
+        //background: url('../grafik/design/feature-bg.png') no-repeat left top;
+
+		h1{
+			font-size: 36px;
+			font-family: 'Yanone Kaffeesatz', Tahoma, Sans-serif;
+			color: white;
+			line-height: 36px;
+			text-shadow: 0px -1px 0px #558599;
+			font-weight: normal;
+			margin: 8px 0;
+			outline: 0;
+			vertical-align: baseline;
+		}
+
+		p{
+			font-size: 14px;
+			line-height: 150%;
+		}
+	}
+
+}
+
+#page-foot{
+	
+	margin-top: 10px;
+
+	padding: 3px;
+	background-color: white;
+	//border: 1px solid #e0e1e1;
+	@include border-radius(4);
+	
+	a{
+		font-size: 14px;
+		text-decoration: none;
+		color: $page-foot-text-color;
+
+		&:hover{
+			color: white;
+			background-color: #6A1538;
+		}
+	}
+
+	span{
+		
+		color: $page-foot-text-color;
+	}
+}
+
+#page-body-left{
+	
+	padding: 0px 5px;
+
+}
+
+.body-paragraph{
+	margin-top: 10px;
+	.item-pic{
+		float: left;
+	}
+	.item-preview{
+		float: right;
+	}
+}
+
+.big-heading{
+	@include text-shadow(0, 1, 2, #050505);
+
+	color: #d63a3a;
+	font:{
+		family: Helvetica;
+		size: 35px;
+	}
+}
+
+.arrow-up{
+	padding-left: 32px;
+	padding-top: 20px;
+	background: url('../grafik/design/arrow_up_light_gray.png') no-repeat left;
+	color: transparent;
+
+	&:hover{
+		background: url('../grafik/design/arrow_up_dark_gray.png') no-repeat left;
+	}
+}
+
+.arrow-down{
+	padding-left: 32px;
+	padding-top: 20px;
+	background: url('../grafik/design/arrow_down_light_gray.png') no-repeat left;
+	color: transparent;
+
+	&:hover{
+		background: url('../grafik/design/arrow_down_dark_gray.png') no-repeat left;
+	}
+}
+
+
+.small-heading{
+	@include text-shadow(0, 1, 2, #050505);
+
+	color: #d63a3a;
+	font:{
+		family: Helvetica;
+		size: 25px;
+	}
+}
+
+.list-heading{
+	font-weight: bold;
+}
+
+.article-heading{
+	font-family: Tahoma, "Helvetica Neue", Arial, Helvetica, sans-serif;
+	font-size: 22px;
+	color: #983F6B;
+	margin-bottom: 5px;
+
+	a {
+		color: #983F6B;
+
+		&:hover{
+			color: #983f6b;
+			background-color: #fff;
+		}
+	}
+}
+
+.article-content{
+	margin-bottom: 10px;
+}
+
+
+.page-title{
+	
+	margin-top: 20px;
+	color: white;
+	min-height: 40px;
+
+	span{
+		display: block;
+		//height: 30px;
+		padding: 0px 40px;
+		padding-top: 5px;
+		
+		font-size: 22px;
+	}
+
+	@include box-shadow(1, 1, 0, #578ba1);
+	@include text-shadow(0, -1, 0, #5F8B9E);
+	@include border-radius-top(4);
+
+	background: #d63a3a url('../grafik/design/sub-header.png');
+
+}
+
+.page-body-content{
+	@include border-radius-bottom(4);
+	@include box-shadow(1, 1, 0, #e0e1e1);
+
+	padding: 10px 40px;
+	background-color: white;
+
+	font-size: 14px;
+	color: #67747A;
+	font-family: Tahoma, "Helvetica Neue", Arial, Helvetica, sans-serif;
+
+}
